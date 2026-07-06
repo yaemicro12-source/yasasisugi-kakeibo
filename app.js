@@ -2,11 +2,11 @@ const STORAGE_KEY = "yasasi_sugi_kakeibo_v1";
 const MONTH_KEY_PREFIX = "month:";
 const DEFAULT_CATEGORY_COLORS = ["#f7ca54", "#ffb36a", "#f59aa0", "#9dd9f3", "#b8e28f", "#d1b4ff"];
 const RECENT_MESSAGES = [
-  "ありがとう♪",
-  "今日もえらい！",
-  "すごくやさしい記録だね。",
-  "ちゃんと続けられててえらいよ。",
-  "えらいえらい、いい感じ！"
+  "邵ｺ繧・ｽ顔ｸｺ蠕娯・邵ｺ繝ｻ鬟ｭ",
+  "闔蛾大ｾ狗ｹｧ繧・斡郢ｧ蟲ｨ・槭・繝ｻ,
+  "邵ｺ蜷ｶ・・ｸｺ荳奇ｽ・ｸｺ霈費ｼ邵ｺ繝ｻ・ｨ蛟ｬ鮖ｸ邵ｺ・ｰ邵ｺ・ｭ邵ｲ繝ｻ,
+  "邵ｺ・｡郢ｧ繝ｻ・鍋ｸｺ・ｨ驍ｯ螢ｹ・郢ｧ蟲ｨ・檎ｸｺ・ｦ邵ｺ・ｦ邵ｺ蛹ｻ・臥ｸｺ繝ｻ・育ｸｲ繝ｻ,
+  "邵ｺ蛹ｻ・臥ｸｺ繝ｻ竏ｴ郢ｧ蟲ｨ・樒ｸｲ竏夲ｼ樒ｸｺ繝ｻ笏邵ｺ蛛・ｽｼ繝ｻ
 ];
 
 const DOM = {
@@ -173,7 +173,7 @@ function getMonthDates(date) {
 }
 
 function formatMoney(value) {
-  return `${Number(value || 0).toLocaleString("ja-JP")}円`;
+  return `${Number(value || 0).toLocaleString("ja-JP")}陷繝ｻ;
 }
 
 function clamp(value, min, max) {
@@ -257,10 +257,10 @@ function getMonthConfig(monthKey) {
 
 function createDefaultCategories() {
   return [
-    { id: uid(), name: "食費", budget: 30000, color: DEFAULT_CATEGORY_COLORS[0] },
-    { id: uid(), name: "生活費", budget: 20000, color: DEFAULT_CATEGORY_COLORS[1] },
-    { id: uid(), name: "娯楽", budget: 10000, color: DEFAULT_CATEGORY_COLORS[2] },
-    { id: uid(), name: "交通", budget: 12000, color: DEFAULT_CATEGORY_COLORS[3] }
+    { id: uid(), name: "鬯滓ｺｯ・ｲ・ｻ", budget: 30000, color: DEFAULT_CATEGORY_COLORS[0] },
+    { id: uid(), name: "騾墓ｻ難ｽｴ・ｻ髮具ｽｻ", budget: 20000, color: DEFAULT_CATEGORY_COLORS[1] },
+    { id: uid(), name: "陞ｽ・ｯ隶鯉ｽｽ", budget: 10000, color: DEFAULT_CATEGORY_COLORS[2] },
+    { id: uid(), name: "闔・､鬨ｾ繝ｻ, budget: 12000, color: DEFAULT_CATEGORY_COLORS[3] }
   ];
 }
 
@@ -297,7 +297,7 @@ function setView(viewName) {
     view.classList.toggle("is-active", active);
   });
 
-  DOM.bottomNav.hidden = viewName === "auth" || viewName === "setup";
+  DOM.bottomNav.hidden = viewName === "auth" || viewName === "setup" || viewName === "record";
   DOM.appShell.hidden = viewName === "auth" || viewName === "setup";
   DOM.authScreen.hidden = viewName !== "auth";
   DOM.setupScreen.hidden = viewName !== "setup";
@@ -437,7 +437,7 @@ function isFirstRun() {
 }
 
 function renderRemainingToday() {
-  DOM.remainingToday.textContent = `今日あと ${formatMoney(getRemainingTodayAmount())}`;
+  DOM.remainingToday.textContent = `闔蛾大ｾ狗ｸｺ繧・・ ${formatMoney(getRemainingTodayAmount())}`;
 }
 
 function boot() {
@@ -518,8 +518,7 @@ function highlightBottomNav(target) {
 function showApp() {
   DOM.appShell.hidden = false;
   DOM.bottomNav.hidden = false;
-  setView("home");
-  highlightBottomNav("home");
+  setView("record");
 }
 
 function showSetupScreen() {
@@ -536,7 +535,7 @@ function handleLogin(event) {
   const password = DOM.loginPassword.value.trim();
 
   if (!loginId || !password) {
-    showTransientFormError(DOM.loginForm, "IDとパスワードを入れてね");
+    showTransientFormError(DOM.loginForm, "ID邵ｺ・ｨ郢昜ｻ｣縺帷ｹ晢ｽｯ郢晢ｽｼ郢晏ｳｨ・定怦・･郢ｧ蠕娯ｻ邵ｺ・ｭ");
     return;
   }
 
@@ -544,7 +543,7 @@ function handleLogin(event) {
   state.profile = state.profile ?? { name: loginId };
   saveState();
   setMascotMood([DOM.authMascot], "normal");
-  setSpeech("ログインできたよ。今日もゆっくりいこうね。");
+  setSpeech("郢晢ｽｭ郢ｧ・ｰ郢ｧ・､郢晢ｽｳ邵ｺ・ｧ邵ｺ髦ｪ笳・ｹｧ蛹ｻﾂ繧・ｽｻ鬆大ｾ狗ｹｧ繧・ｽ・ｸｺ・｣邵ｺ荳奇ｽ顔ｸｺ繝ｻ・・ｸｺ繝ｻ繝ｻ邵ｲ繝ｻ);
   beginMonthIfNeeded();
 }
 
@@ -555,7 +554,7 @@ function handleRegister(event) {
   const password = DOM.registerPassword.value.trim();
 
   if (!name || !registerId || password.length < 8) {
-    showTransientFormError(DOM.registerForm, "おなまえ、メール、8文字以上のパスワードが必要だよ");
+    showTransientFormError(DOM.registerForm, "邵ｺ鄙ｫ竊醍ｸｺ・ｾ邵ｺ蛹ｻﾂ竏墅鍋ｹ晢ｽｼ郢晢ｽｫ邵ｲ繝ｻ隴√・・ｭ蠍ｺ・ｻ・･闕ｳ鄙ｫ繝ｻ郢昜ｻ｣縺帷ｹ晢ｽｯ郢晢ｽｼ郢晏ｳｨ窶ｲ陟｢繝ｻ・ｦ竏壺味郢ｧ繝ｻ);
     return;
   }
 
@@ -563,7 +562,7 @@ function handleRegister(event) {
   state.profile = { name };
   saveState();
   setMascotMood([DOM.authMascot], "happy");
-  setSpeech("登録ありがとう。やさしく続けようね。");
+  setSpeech("騾具ｽｻ鬪ｭ・ｲ邵ｺ繧・ｽ顔ｸｺ蠕娯・邵ｺ繝ｻﾂ繧・ｽ・ｸｺ霈費ｼ邵ｺ蜀暦ｽｶ螢ｹ・郢ｧ蛹ｻ竕ｧ邵ｺ・ｭ邵ｲ繝ｻ);
   beginMonthIfNeeded();
 }
 
@@ -621,27 +620,26 @@ function renderSetupStage() {
 
   if (!current) {
     DOM.setupChat.innerHTML = `
-      <div class="chat-message chat-message--bot">ありがとう。初回設定が終わったよ。ホームへ進もう。</div>
+      <div class="chat-message chat-message--bot">邵ｺ繧・ｽ顔ｸｺ蠕娯・邵ｺ繝ｻﾂ繧・・陜玲ｫ・ｽｨ・ｭ陞ｳ螢ｹ窶ｲ驍ｨ繧・ｽ冗ｸｺ・｣邵ｺ貅假ｽ育ｸｲ繧・・郢晢ｽｼ郢晢｣ｰ邵ｺ・ｸ鬨ｾ・ｲ郢ｧ繧・鴬邵ｲ繝ｻ/div>
     `;
     DOM.setupForm.hidden = true;
-    DOM.setupActions.innerHTML = `<button type="button" class="primary-button" data-setup-done>ホームへ</button>`;
+    DOM.setupActions.innerHTML = `<button type="button" class="primary-button" data-setup-done>郢晏ｸ吶・郢晢｣ｰ邵ｺ・ｸ</button>`;
     DOM.setupActions.querySelector("[data-setup-done]")?.addEventListener("click", () => {
       finishSetup();
     });
     return;
   }
 
-  const currentName = current.name || `カテゴリ${flow.index + 1}`;
+  const currentName = current.name || `郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ${flow.index + 1}`;
   DOM.setupChat.innerHTML = `
     <div class="chat-message chat-message--bot">
       <span class="chat-message__meta">${flow.index + 1}/${categories.length}</span>
-      ${escapeHtml(currentName)}はいくらにする？
-    </div>
+      ${escapeHtml(currentName)}邵ｺ・ｯ邵ｺ繝ｻ・･郢ｧ蟲ｨ竊鍋ｸｺ蜷ｶ・九・繝ｻ    </div>
   `;
   DOM.setupInput.value = current.budget ? String(current.budget) : "";
-  DOM.setupInput.placeholder = `${currentName}の予算を入力`;
+  DOM.setupInput.placeholder = `${currentName}邵ｺ・ｮ闔閧ｲ・ｮ蜉ｱ・定怦・･陷牙ｫ｣;
   DOM.setupActions.innerHTML = `
-    <button type="button" class="option-button" data-setup-add>カテゴリを追加</button>
+    <button type="button" class="option-button" data-setup-add>郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ郢ｧ螳夲ｽｿ・ｽ陷会｣ｰ</button>
   `;
 }
 
@@ -653,7 +651,7 @@ function handleSetupSubmit(event) {
 
   const value = Number(DOM.setupInput.value);
   if (!Number.isFinite(value) || value < 0) {
-    showTransientFormError(DOM.setupForm, "金額を入れてね");
+    showTransientFormError(DOM.setupForm, "鬩･鮃ｹ・｡髦ｪ・定怦・･郢ｧ蠕娯ｻ邵ｺ・ｭ");
     return;
   }
 
@@ -673,11 +671,11 @@ function handleSetupActions(event) {
     return;
   }
 
-  const name = window.prompt("追加するカテゴリ名を入れてね");
+  const name = window.prompt("髴托ｽｽ陷会｣ｰ邵ｺ蜷ｶ・狗ｹｧ・ｫ郢昴・縺也ｹ晢ｽｪ陷ｷ髦ｪ・定怦・･郢ｧ蠕娯ｻ邵ｺ・ｭ");
   if (!name) {
     return;
   }
-  const budget = Number(window.prompt(`${name}の予算を入れてね`, "0"));
+  const budget = Number(window.prompt(`${name}邵ｺ・ｮ闔閧ｲ・ｮ蜉ｱ・定怦・･郢ｧ蠕娯ｻ邵ｺ・ｭ`, "0"));
   if (!Number.isFinite(budget)) {
     return;
   }
@@ -708,7 +706,7 @@ function finishSetup() {
   showApp();
   renderAll();
   setMascotMood([DOM.homeMascot, DOM.chatMascot], "normal");
-  setSpeech("準備できたよ。ゆっくり記録していこうね。");
+  setSpeech("雋・摩・咏ｸｺ・ｧ邵ｺ髦ｪ笳・ｹｧ蛹ｻﾂ繧・ｽ・ｸｺ・｣邵ｺ荳奇ｽ企坎蛟ｬ鮖ｸ邵ｺ蜉ｱ窶ｻ邵ｺ繝ｻ・・ｸｺ繝ｻ繝ｻ邵ｲ繝ｻ);
 }
 
 function renderAll() {
@@ -729,35 +727,35 @@ function renderHome() {
   if (ui.recordCompletion) {
     DOM.chatLog.innerHTML = `
       <div class="chat-message chat-message--bot">
-        <span class="chat-message__meta">記録完了</span>
+        <span class="chat-message__meta">髫ｪ蛟ｬ鮖ｸ陞ｳ蠕｡・ｺ繝ｻ/span>
         ${escapeHtml(ui.recordCompletion.message)}
         <div class="record-summary">
-          <div class="record-summary__row"><span class="record-summary__label">日付</span><strong>${escapeHtml(formatDateLabel(ui.recordCompletion.record.date))}</strong></div>
-          <div class="record-summary__row"><span class="record-summary__label">カテゴリ</span><strong>${escapeHtml(getCategoryById(ui.recordCompletion.record.categoryId)?.name || "")}</strong></div>
-          <div class="record-summary__row"><span class="record-summary__label">金額</span><strong>${formatMoney(ui.recordCompletion.record.amount)}</strong></div>
-          <div class="record-summary__row"><span class="record-summary__label">連続記録</span><strong>${ui.recordCompletion.streak}日連続！</strong></div>
+          <div class="record-summary__row"><span class="record-summary__label">隴鯉ｽ･闔峨・/span><strong>${escapeHtml(formatDateLabel(ui.recordCompletion.record.date))}</strong></div>
+          <div class="record-summary__row"><span class="record-summary__label">郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ</span><strong>${escapeHtml(getCategoryById(ui.recordCompletion.record.categoryId)?.name || "")}</strong></div>
+          <div class="record-summary__row"><span class="record-summary__label">鬩･鮃ｹ・｡繝ｻ/span><strong>${formatMoney(ui.recordCompletion.record.amount)}</strong></div>
+          <div class="record-summary__row"><span class="record-summary__label">鬨ｾ・｣驍ｯ螟奇ｽｨ蛟ｬ鮖ｸ</span><strong>${ui.recordCompletion.streak}隴鯉ｽ･鬨ｾ・｣驍ｯ螟ｲ・ｼ繝ｻ/strong></div>
         </div>
       </div>
     `;
     DOM.chatActions.innerHTML = `
-      <button type="button" class="option-button" data-chat-action="confirm">かくにん</button>
-      <button type="button" class="option-button" data-chat-action="record">きろく</button>
+      <button type="button" class="option-button" data-chat-action="confirm">邵ｺ荵晢ｿ･邵ｺ・ｫ郢ｧ繝ｻ/button>
+      <button type="button" class="option-button" data-chat-action="record">邵ｺ髦ｪ・咲ｸｺ繝ｻ/button>
     `;
     DOM.chatComposer.hidden = false;
-    DOM.chatInput.placeholder = "続けて入力してもいいよ";
+    DOM.chatInput.placeholder = "驍ｯ螢ｹ・邵ｺ・ｦ陷茨ｽ･陷牙ｸ呻ｼ邵ｺ・ｦ郢ｧ繧・ｼ樒ｸｺ繝ｻ・・;
     return;
   }
 
   if (!ui.recordFlow) {
     DOM.chatLog.innerHTML = `
-      <div class="chat-message chat-message--bot">なにする？</div>
+      <div class="chat-message chat-message--bot">邵ｺ・ｪ邵ｺ・ｫ邵ｺ蜷ｶ・九・繝ｻ/div>
     `;
     DOM.chatActions.innerHTML = `
-      <button type="button" class="option-button" data-chat-action="confirm">かくにん</button>
-      <button type="button" class="option-button" data-chat-action="record">きろく</button>
+      <button type="button" class="option-button" data-chat-action="confirm">邵ｺ荵晢ｿ･邵ｺ・ｫ郢ｧ繝ｻ/button>
+      <button type="button" class="option-button" data-chat-action="record">邵ｺ髦ｪ・咲ｸｺ繝ｻ/button>
     `;
     DOM.chatComposer.hidden = false;
-    DOM.chatInput.placeholder = "ここに入力しても大丈夫";
+    DOM.chatInput.placeholder = "邵ｺ阮呻ｼ・ｸｺ・ｫ陷茨ｽ･陷牙ｸ呻ｼ邵ｺ・ｦ郢ｧ繧・ｽ､・ｧ闕ｳ莠･・､・ｫ";
   } else {
     renderRecordFlow();
   }
@@ -767,13 +765,13 @@ function renderHomeButtons() {
   const recordsToday = getRecordsForDate(toDateKey(new Date()));
   const streak = getStreakDays();
   if (ui.recordCompletion) {
-    DOM.speechBubble.textContent = `${ui.recordCompletion.message} ${streak > 1 ? `${streak}日連続！` : "今日もえらい！"}`;
+    DOM.speechBubble.textContent = `${ui.recordCompletion.message} ${streak > 1 ? `${streak}隴鯉ｽ･鬨ｾ・｣驍ｯ螟ｲ・ｼ・・: "闔蛾大ｾ狗ｹｧ繧・斡郢ｧ蟲ｨ・槭・繝ｻ}`;
     return;
   }
 
   DOM.speechBubble.textContent = recordsToday.length
-    ? `今日も記録できてるね。${streak > 1 ? `${streak}日連続だよ。` : "えらい！"}`
-    : "今日はどんな1日にする？";
+    ? `闔蛾大ｾ狗ｹｧ繧奇ｽｨ蛟ｬ鮖ｸ邵ｺ・ｧ邵ｺ髦ｪ窶ｻ郢ｧ荵昴・邵ｲ繝ｻ{streak > 1 ? `${streak}隴鯉ｽ･鬨ｾ・｣驍ｯ螢ｹ笆｡郢ｧ蛹ｻﾂ・｡ : "邵ｺ蛹ｻ・臥ｸｺ繝ｻ・ｼ繝ｻ}`
+    : "闔蛾大ｾ狗ｸｺ・ｯ邵ｺ・ｩ郢ｧ阮吮・1隴鯉ｽ･邵ｺ・ｫ邵ｺ蜷ｶ・九・繝ｻ;
 }
 
 function handleHomeAction(event) {
@@ -821,8 +819,7 @@ function startRecordFlow(record = null, initialStep = "date") {
     aiResult: null
   };
   setMascotMood([DOM.chatMascot, DOM.homeMascot], "normal");
-  setView("home");
-  highlightBottomNav("home");
+  setView("record");
   renderRecordFlow();
 }
 
@@ -830,19 +827,19 @@ function resetRecordFlow() {
   ui.recordFlow = null;
   ui.recordDraft = null;
   ui.recordCompletion = null;
-  DOM.chatLog.innerHTML = `<div class="chat-message chat-message--bot">なにする？</div>`;
-  DOM.chatActions.innerHTML = `
-    <button type="button" class="option-button" data-chat-action="confirm">かくにん</button>
-    <button type="button" class="option-button" data-chat-action="record">きろく</button>
-  `;
-  DOM.chatComposer.hidden = false;
-  DOM.chatInput.placeholder = "ここに入力しても大丈夫";
+  setView("record");
+  renderRecordFlow();
   setMascotMood([DOM.chatMascot, DOM.homeMascot], "normal");
   setSpeech("なにする？");
 }
-
 function renderRecordFlow() {
   if (!ui.recordFlow) {
+    DOM.chatComposer.hidden = true;
+    DOM.chatLog.innerHTML = `<div class="chat-message chat-message--bot">なにする？</div>`;
+    DOM.chatActions.innerHTML = `
+      <button type="button" class="option-button" data-chat-action="confirm">かくにん</button>
+      <button type="button" class="option-button" data-chat-action="record">きろく</button>
+    `;
     return;
   }
 
@@ -852,59 +849,59 @@ function renderRecordFlow() {
   DOM.chatLog.innerHTML = "";
   DOM.chatActions.innerHTML = "";
   DOM.chatInput.value = "";
-  DOM.chatInput.placeholder = "ここに入力";
+  DOM.chatInput.placeholder = "邵ｺ阮呻ｼ・ｸｺ・ｫ陷茨ｽ･陷峨・;
 
   if (step === "date") {
-    renderBotMessage("いつのきろく？");
+    renderBotMessage("邵ｺ繝ｻ笆ｽ邵ｺ・ｮ邵ｺ髦ｪ・咲ｸｺ謫ｾ・ｼ繝ｻ);
     DOM.chatActions.innerHTML = `
-      <button type="button" class="option-button" data-step-date="today">今日</button>
-      <button type="button" class="option-button" data-step-date="yesterday">昨日</button>
-      <button type="button" class="option-button" data-step-date="other">別の日</button>
+      <button type="button" class="option-button" data-step-date="today">闔蛾大ｾ・/button>
+      <button type="button" class="option-button" data-step-date="yesterday">隴擾ｽｨ隴鯉ｽ･</button>
+      <button type="button" class="option-button" data-step-date="other">陋ｻ・･邵ｺ・ｮ隴鯉ｽ･</button>
     `;
     return;
   }
 
   if (step === "date-other") {
-    renderBotMessage("カレンダーから日付を選んでね");
+    renderBotMessage("郢ｧ・ｫ郢晢ｽｬ郢晢ｽｳ郢敖郢晢ｽｼ邵ｺ荵晢ｽ芽ｭ鯉ｽ･闔牙･・帝ｩ包ｽｸ郢ｧ阮吶堤ｸｺ・ｭ");
     DOM.chatActions.innerHTML = renderMiniCalendarMarkup();
     bindMiniCalendarButtons();
     return;
   }
 
   if (step === "category") {
-    renderBotMessage("カテゴリは？");
+    renderBotMessage("郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ邵ｺ・ｯ繝ｻ繝ｻ);
     const categories = getCurrentCategories();
     DOM.chatActions.innerHTML = `
       ${categories.map((category) => `<button type="button" class="option-button" data-category-id="${category.id}">${escapeHtml(category.name)}</button>`).join("")}
-      <button type="button" class="option-button" data-add-category>カテゴリをふやす</button>
+      <button type="button" class="option-button" data-add-category>郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ郢ｧ蛛ｵ繝ｻ郢ｧ繝ｻ笘・/button>
     `;
     return;
   }
 
   if (step === "category-add-name") {
-    renderBotMessage("新しいカテゴリ名を入れてね");
-    DOM.chatInput.placeholder = "例：日用品";
+    renderBotMessage("隴・ｽｰ邵ｺ蜉ｱ・樒ｹｧ・ｫ郢昴・縺也ｹ晢ｽｪ陷ｷ髦ｪ・定怦・･郢ｧ蠕娯ｻ邵ｺ・ｭ");
+    DOM.chatInput.placeholder = "關灘・・ｼ螢ｽ蠕矩包ｽｨ陷ｩ繝ｻ;
     DOM.chatComposer.hidden = false;
     return;
   }
 
   if (step === "category-add-budget") {
-    renderBotMessage(`${draft.newCategoryName}の予算は？`);
-    DOM.chatInput.placeholder = "金額を入力";
+    renderBotMessage(`${draft.newCategoryName}邵ｺ・ｮ闔閧ｲ・ｮ蜉ｱ繝ｻ繝ｻ豁・;
+    DOM.chatInput.placeholder = "鬩･鮃ｹ・｡髦ｪ・定怦・･陷峨・;
     return;
   }
 
   if (step === "detail-toggle") {
-    renderBotMessage("くわしくきろくする？");
+    renderBotMessage("邵ｺ荳奇ｽ冗ｸｺ蜉ｱ・･邵ｺ髦ｪ・咲ｸｺ荳岩・郢ｧ蜈ｷ・ｼ繝ｻ);
     DOM.chatActions.innerHTML = `
-      <button type="button" class="option-button" data-detail-toggle="yes">はい</button>
-      <button type="button" class="option-button" data-detail-toggle="no">いいえ</button>
+      <button type="button" class="option-button" data-detail-toggle="yes">邵ｺ・ｯ邵ｺ繝ｻ/button>
+      <button type="button" class="option-button" data-detail-toggle="no">邵ｺ繝ｻ・樒ｸｺ繝ｻ/button>
     `;
     return;
   }
 
   if (step === "detail") {
-    renderBotMessage("店舗名、金額、メモ、レシートを入れてね");
+    renderBotMessage("陟手挙繝ｻ陷ｷ髦ｪﾂ繝ｻ竕｡鬯倬亂ﾂ竏墅鍋ｹ晢ｽ｢邵ｲ竏墅樒ｹｧ・ｷ郢晢ｽｼ郢晏現・定怦・･郢ｧ蠕娯ｻ邵ｺ・ｭ");
     DOM.chatLog.insertAdjacentHTML("beforeend", renderDetailEditor());
     bindDetailEditor();
     DOM.chatComposer.hidden = true;
@@ -912,75 +909,75 @@ function renderRecordFlow() {
   }
 
   if (step === "quick-range") {
-    renderBotMessage("いくらくらい？");
+    renderBotMessage("邵ｺ繝ｻ・･郢ｧ蟲ｨ・･郢ｧ蟲ｨ・槭・繝ｻ);
     DOM.chatActions.innerHTML = `
-      <button type="button" class="option-button" data-amount-range="low">1000円以下</button>
-      <button type="button" class="option-button" data-amount-range="mid">1000〜10000円</button>
-      <button type="button" class="option-button" data-amount-range="high">10000円以上</button>
-      <button type="button" class="option-button" data-amount-range="custom">くわしく入力</button>
+      <button type="button" class="option-button" data-amount-range="low">1000陷繝ｻ・ｻ・･闕ｳ繝ｻ/button>
+      <button type="button" class="option-button" data-amount-range="mid">1000邵ｲ繝ｻ0000陷繝ｻ/button>
+      <button type="button" class="option-button" data-amount-range="high">10000陷繝ｻ・ｻ・･闕ｳ繝ｻ/button>
+      <button type="button" class="option-button" data-amount-range="custom">邵ｺ荳奇ｽ冗ｸｺ蜉ｱ・･陷茨ｽ･陷峨・/button>
     `;
     return;
   }
 
   if (step === "quick-low") {
-    renderBotMessage("100円単位で選んでね");
+    renderBotMessage("100陷繝ｻ閻ｰ闖ｴ髦ｪ縲帝ｩ包ｽｸ郢ｧ阮吶堤ｸｺ・ｭ");
     DOM.chatActions.innerHTML = renderAmountButtons(100, 1000, 100);
     return;
   }
 
   if (step === "quick-mid") {
-    renderBotMessage("1000円単位で選んでね");
+    renderBotMessage("1000陷繝ｻ閻ｰ闖ｴ髦ｪ縲帝ｩ包ｽｸ郢ｧ阮吶堤ｸｺ・ｭ");
     DOM.chatActions.innerHTML = renderAmountButtons(1000, 10000, 1000);
     return;
   }
 
   if (step === "quick-mid-fine") {
-    renderBotMessage("100円台も入れる？");
+    renderBotMessage("100陷繝ｻ蠎顔ｹｧ繧・・郢ｧ蠕鯉ｽ九・繝ｻ);
     DOM.chatActions.innerHTML = `
-      <button type="button" class="option-button" data-fine-100="yes">はい</button>
-      <button type="button" class="option-button" data-fine-100="no">いいえ</button>
+      <button type="button" class="option-button" data-fine-100="yes">邵ｺ・ｯ邵ｺ繝ｻ/button>
+      <button type="button" class="option-button" data-fine-100="no">邵ｺ繝ｻ・樒ｸｺ繝ｻ/button>
     `;
     return;
   }
 
   if (step === "quick-mid-fine-amount") {
-    renderBotMessage("100円単位で足してね");
+    renderBotMessage("100陷繝ｻ閻ｰ闖ｴ髦ｪ縲帝屆・ｳ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ");
     DOM.chatActions.innerHTML = renderAmountButtons(100, 900, 100);
     return;
   }
 
   if (step === "quick-high") {
-    renderBotMessage("10000円単位で選んでね");
+    renderBotMessage("10000陷繝ｻ閻ｰ闖ｴ髦ｪ縲帝ｩ包ｽｸ郢ｧ阮吶堤ｸｺ・ｭ");
     DOM.chatActions.innerHTML = renderAmountButtons(10000, 100000, 10000);
     return;
   }
 
   if (step === "quick-high-thousand") {
-    renderBotMessage("1000円単位も入れる？");
+    renderBotMessage("1000陷繝ｻ閻ｰ闖ｴ髦ｪ・り怦・･郢ｧ蠕鯉ｽ九・繝ｻ);
     DOM.chatActions.innerHTML = `
-      <button type="button" class="option-button" data-fine-1000="yes">はい</button>
-      <button type="button" class="option-button" data-fine-1000="no">いいえ</button>
+      <button type="button" class="option-button" data-fine-1000="yes">邵ｺ・ｯ邵ｺ繝ｻ/button>
+      <button type="button" class="option-button" data-fine-1000="no">邵ｺ繝ｻ・樒ｸｺ繝ｻ/button>
     `;
     return;
   }
 
   if (step === "quick-high-thousand-amount") {
-    renderBotMessage("1000円単位で足してね");
+    renderBotMessage("1000陷繝ｻ閻ｰ闖ｴ髦ｪ縲帝屆・ｳ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ");
     DOM.chatActions.innerHTML = renderAmountButtons(1000, 9000, 1000);
     return;
   }
 
   if (step === "quick-high-fine") {
-    renderBotMessage("100円台も入れる？");
+    renderBotMessage("100陷繝ｻ蠎顔ｹｧ繧・・郢ｧ蠕鯉ｽ九・繝ｻ);
     DOM.chatActions.innerHTML = `
-      <button type="button" class="option-button" data-fine-100="yes">はい</button>
-      <button type="button" class="option-button" data-fine-100="no">いいえ</button>
+      <button type="button" class="option-button" data-fine-100="yes">邵ｺ・ｯ邵ｺ繝ｻ/button>
+      <button type="button" class="option-button" data-fine-100="no">邵ｺ繝ｻ・樒ｸｺ繝ｻ/button>
     `;
     return;
   }
 
   if (step === "quick-high-fine-amount") {
-    renderBotMessage("100円単位で足してね");
+    renderBotMessage("100陷繝ｻ閻ｰ闖ｴ髦ｪ縲帝屆・ｳ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ");
     DOM.chatActions.innerHTML = renderAmountButtons(100, 900, 100);
     return;
   }
@@ -1048,17 +1045,17 @@ function renderDetailEditor() {
   const draft = ui.recordDraft;
   return `
     <div class="record-summary">
-      <label class="field"><span>店舗名</span><input id="detailStore" type="text" value="${escapeHtml(draft.store || "")}" placeholder="例：コンビニ"></label>
-      <label class="field"><span>金額</span><input id="detailAmount" type="number" min="0" step="1" value="${escapeHtml(draft.amount || "")}" placeholder="0"></label>
-      <label class="field"><span>メモ</span><textarea id="detailMemo" placeholder="任意のメモ">${escapeHtml(draft.memo || "")}</textarea></label>
-      <label class="field"><span>レシート撮影 / アップロード</span><input id="receiptFile" class="hidden-file" type="file" accept="image/*"></label>
+      <label class="field"><span>陟手挙繝ｻ陷ｷ繝ｻ/span><input id="detailStore" type="text" value="${escapeHtml(draft.store || "")}" placeholder="關灘・・ｼ螢ｹ縺慕ｹ晢ｽｳ郢晁侭繝ｫ"></label>
+      <label class="field"><span>鬩･鮃ｹ・｡繝ｻ/span><input id="detailAmount" type="number" min="0" step="1" value="${escapeHtml(draft.amount || "")}" placeholder="0"></label>
+      <label class="field"><span>郢晢ｽ｡郢晢ｽ｢</span><textarea id="detailMemo" placeholder="闔会ｽｻ隲｢荳翫・郢晢ｽ｡郢晢ｽ｢">${escapeHtml(draft.memo || "")}</textarea></label>
+      <label class="field"><span>郢晢ｽｬ郢ｧ・ｷ郢晢ｽｼ郢晏沺閨ｴ陟厄ｽｱ / 郢ｧ・｢郢昴・繝ｻ郢晢ｽｭ郢晢ｽｼ郢昴・/span><input id="receiptFile" class="hidden-file" type="file" accept="image/*"></label>
       <div class="home-actions">
-        <button type="button" class="secondary-button" data-receipt-select>画像を選ぶ</button>
-        <button type="button" class="secondary-button" data-receipt-ai>AIでよみとる</button>
+        <button type="button" class="secondary-button" data-receipt-select>騾包ｽｻ陷剃ｸ奇ｽ帝ｩ包ｽｸ邵ｺ・ｶ</button>
+        <button type="button" class="secondary-button" data-receipt-ai>AI邵ｺ・ｧ郢ｧ蛹ｻ竏ｩ邵ｺ・ｨ郢ｧ繝ｻ/button>
       </div>
-      <div id="receiptResult" class="subcopy">画像は設定で保存ONにした場合のみ保持します。</div>
+      <div id="receiptResult" class="subcopy">騾包ｽｻ陷剃ｸ翫・髫ｪ・ｭ陞ｳ螢ｹ縲定将譎擾ｽｭ讌ｼN邵ｺ・ｫ邵ｺ蜉ｱ笳・撻・ｴ陷ｷ蛹ｻ繝ｻ邵ｺ・ｿ闖ｫ譎・亜邵ｺ蜉ｱ竏ｪ邵ｺ蜷ｶﾂ繝ｻ/div>
       <div class="home-actions">
-        <button type="button" class="primary-button" data-detail-next>次へ</button>
+        <button type="button" class="primary-button" data-detail-next>隹ｺ・｡邵ｺ・ｸ</button>
       </div>
     </div>
   `;
@@ -1079,22 +1076,22 @@ function bindDetailEditor() {
     const selected = file.files?.[0];
     if (selected) {
       ui.recordFlow.receiptFile = selected;
-      result.textContent = `選択した画像: ${selected.name}`;
+      result.textContent = `鬩包ｽｸ隰壽ｧｭ・邵ｺ貅ｽ蛻､陷偵・ ${selected.name}`;
     }
   });
 
   aiButton?.addEventListener("click", async () => {
     const selected = file?.files?.[0];
     if (!selected) {
-      result.textContent = "先にレシート画像を選んでね。";
+      result.textContent = "陷亥現竊鍋ｹ晢ｽｬ郢ｧ・ｷ郢晢ｽｼ郢晁ご蛻､陷剃ｸ奇ｽ帝ｩ包ｽｸ郢ｧ阮吶堤ｸｺ・ｭ邵ｲ繝ｻ;
       return;
     }
     if (!window.Tesseract?.recognize) {
-      result.textContent = "この端末ではAI読み取りを使えないので、手入力で進めてね。";
+      result.textContent = "邵ｺ阮吶・驕ｶ・ｯ隴幢ｽｫ邵ｺ・ｧ邵ｺ・ｯAI髫ｱ・ｭ邵ｺ・ｿ陷ｿ謔ｶ・顔ｹｧ蜑・ｽｽ・ｿ邵ｺ蛹ｻ竊醍ｸｺ繝ｻ繝ｻ邵ｺ・ｧ邵ｲ竏ｵ辟碑怦・･陷牙ｸ吶帝ｨｾ・ｲ郢ｧ竏壺ｻ邵ｺ・ｭ邵ｲ繝ｻ;
       return;
     }
 
-    result.textContent = "読み取り中...";
+    result.textContent = "髫ｱ・ｭ邵ｺ・ｿ陷ｿ謔ｶ・願叉・ｭ...";
     try {
       const { data } = await window.Tesseract.recognize(selected, "jpn+eng");
       const text = data.text || "";
@@ -1107,9 +1104,9 @@ function bindDetailEditor() {
         store.value = extractedStore;
       }
       ui.recordFlow.aiResult = text.slice(0, 120);
-      result.textContent = "読み取りできたよ。必要なら少し直してね。";
+      result.textContent = "髫ｱ・ｭ邵ｺ・ｿ陷ｿ謔ｶ・顔ｸｺ・ｧ邵ｺ髦ｪ笳・ｹｧ蛹ｻﾂ繧・ｽｿ繝ｻ・ｦ竏壺・郢ｧ迚呻ｽｰ莉｣・騾ｶ・ｴ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ邵ｲ繝ｻ;
     } catch (error) {
-      result.textContent = "読み取りに失敗したよ。手入力でも大丈夫。";
+      result.textContent = "髫ｱ・ｭ邵ｺ・ｿ陷ｿ謔ｶ・顔ｸｺ・ｫ陞滂ｽｱ隰ｨ蜉ｱ・邵ｺ貅假ｽ育ｸｲ繧育・陷茨ｽ･陷牙ｸ吶堤ｹｧ繧・ｽ､・ｧ闕ｳ莠･・､・ｫ邵ｲ繝ｻ;
     }
   });
 
@@ -1126,22 +1123,21 @@ function renderConfirmationSummary() {
   const draft = ui.recordDraft;
   const category = getCategoryById(draft.categoryId);
   const detailLines = [];
-  detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">日付</span><strong>${escapeHtml(formatDateLabel(draft.date))}</strong></div>`);
-  detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">カテゴリ</span><strong>${escapeHtml(category?.name || "")}</strong></div>`);
-  detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">金額</span><strong>${formatMoney(draft.amount)}</strong></div>`);
+  detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">隴鯉ｽ･闔峨・/span><strong>${escapeHtml(formatDateLabel(draft.date))}</strong></div>`);
+  detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ</span><strong>${escapeHtml(category?.name || "")}</strong></div>`);
+  detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">鬩･鮃ｹ・｡繝ｻ/span><strong>${formatMoney(draft.amount)}</strong></div>`);
   if (draft.store || draft.memo) {
-    detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">店舗</span><strong>${escapeHtml(draft.store || "なし")}</strong></div>`);
-    detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">メモ</span><strong>${escapeHtml(draft.memo || "なし")}</strong></div>`);
+    detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">陟手挙繝ｻ</span><strong>${escapeHtml(draft.store || "邵ｺ・ｪ邵ｺ繝ｻ)}</strong></div>`);
+    detailLines.push(`<div class="record-summary__row"><span class="record-summary__label">郢晢ｽ｡郢晢ｽ｢</span><strong>${escapeHtml(draft.memo || "邵ｺ・ｪ邵ｺ繝ｻ)}</strong></div>`);
   }
   DOM.chatLog.innerHTML = `
     <div class="chat-message chat-message--bot">
-      ありがとう。これで記録していいかな？
-      <div class="record-summary">${detailLines.join("")}</div>
+      邵ｺ繧・ｽ顔ｸｺ蠕娯・邵ｺ繝ｻﾂ繧・ｼ・ｹｧ蠕後帝坎蛟ｬ鮖ｸ邵ｺ蜉ｱ窶ｻ邵ｺ繝ｻ・樒ｸｺ荵昶・繝ｻ繝ｻ      <div class="record-summary">${detailLines.join("")}</div>
     </div>
   `;
   DOM.chatActions.innerHTML = `
-    <button type="button" class="option-button" data-confirm-record="save">記録する</button>
-    <button type="button" class="option-button" data-confirm-record="edit">変更する</button>
+    <button type="button" class="option-button" data-confirm-record="save">髫ｪ蛟ｬ鮖ｸ邵ｺ蜷ｶ・・/button>
+    <button type="button" class="option-button" data-confirm-record="edit">陞溽判蟲ｩ邵ｺ蜷ｶ・・/button>
   `;
 }
 
@@ -1149,23 +1145,22 @@ function renderEditSelect() {
   const draft = ui.recordDraft;
   DOM.chatLog.innerHTML = `
     <div class="chat-message chat-message--bot">
-      何を変更しますか？
-      <div class="record-summary">
-        <div class="record-summary__row"><span class="record-summary__label">日付</span><strong>${escapeHtml(formatDateLabel(draft.date))}</strong></div>
-        <div class="record-summary__row"><span class="record-summary__label">カテゴリ</span><strong>${escapeHtml(getCategoryById(draft.categoryId)?.name || "")}</strong></div>
-        <div class="record-summary__row"><span class="record-summary__label">金額</span><strong>${formatMoney(draft.amount)}</strong></div>
-        <div class="record-summary__row"><span class="record-summary__label">店舗</span><strong>${escapeHtml(draft.store || "なし")}</strong></div>
-        <div class="record-summary__row"><span class="record-summary__label">メモ</span><strong>${escapeHtml(draft.memo || "なし")}</strong></div>
+      闖ｴ霈費ｽ定棔逕ｻ蟲ｩ邵ｺ蜉ｱ竏ｪ邵ｺ蜷ｶﾂｰ繝ｻ繝ｻ      <div class="record-summary">
+        <div class="record-summary__row"><span class="record-summary__label">隴鯉ｽ･闔峨・/span><strong>${escapeHtml(formatDateLabel(draft.date))}</strong></div>
+        <div class="record-summary__row"><span class="record-summary__label">郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ</span><strong>${escapeHtml(getCategoryById(draft.categoryId)?.name || "")}</strong></div>
+        <div class="record-summary__row"><span class="record-summary__label">鬩･鮃ｹ・｡繝ｻ/span><strong>${formatMoney(draft.amount)}</strong></div>
+        <div class="record-summary__row"><span class="record-summary__label">陟手挙繝ｻ</span><strong>${escapeHtml(draft.store || "邵ｺ・ｪ邵ｺ繝ｻ)}</strong></div>
+        <div class="record-summary__row"><span class="record-summary__label">郢晢ｽ｡郢晢ｽ｢</span><strong>${escapeHtml(draft.memo || "邵ｺ・ｪ邵ｺ繝ｻ)}</strong></div>
       </div>
     </div>
   `;
   DOM.chatActions.innerHTML = `
-    <button type="button" class="option-button" data-edit-field="date">日付</button>
-    <button type="button" class="option-button" data-edit-field="category">カテゴリ</button>
-    <button type="button" class="option-button" data-edit-field="amount">金額</button>
-    <button type="button" class="option-button" data-edit-field="store">店舗名</button>
-    <button type="button" class="option-button" data-edit-field="memo">メモ</button>
-    <button type="button" class="option-button" data-edit-field="detail">くわしく</button>
+    <button type="button" class="option-button" data-edit-field="date">隴鯉ｽ･闔峨・/button>
+    <button type="button" class="option-button" data-edit-field="category">郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ</button>
+    <button type="button" class="option-button" data-edit-field="amount">鬩･鮃ｹ・｡繝ｻ/button>
+    <button type="button" class="option-button" data-edit-field="store">陟手挙繝ｻ陷ｷ繝ｻ/button>
+    <button type="button" class="option-button" data-edit-field="memo">郢晢ｽ｡郢晢ｽ｢</button>
+    <button type="button" class="option-button" data-edit-field="detail">邵ｺ荳奇ｽ冗ｸｺ蜉ｱ・･</button>
   `;
 }
 
@@ -1184,9 +1179,9 @@ function renderEditField() {
 
   DOM.chatLog.innerHTML = `
     <div class="chat-message chat-message--bot">
-      ${field === "date" ? "日付を直してね" : field === "category" ? "カテゴリを直してね" : field === "amount" ? "金額を直してね" : field === "store" ? "店舗名を直してね" : field === "memo" ? "メモを直してね" : "くわしくきろくする内容を直してね"}
+      ${field === "date" ? "隴鯉ｽ･闔牙･・帝ｶ・ｴ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ" : field === "category" ? "郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ郢ｧ蝣､蟲ｩ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ" : field === "amount" ? "鬩･鮃ｹ・｡髦ｪ・帝ｶ・ｴ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ" : field === "store" ? "陟手挙繝ｻ陷ｷ髦ｪ・帝ｶ・ｴ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ" : field === "memo" ? "郢晢ｽ｡郢晢ｽ｢郢ｧ蝣､蟲ｩ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ" : "邵ｺ荳奇ｽ冗ｸｺ蜉ｱ・･邵ｺ髦ｪ・咲ｸｺ荳岩・郢ｧ蜿･繝ｻ陞ｳ・ｹ郢ｧ蝣､蟲ｩ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ"}
       <div class="record-summary">
-        <div class="record-summary__row"><span class="record-summary__label">現在値</span><strong>${escapeHtml(currentValue || "なし")}</strong></div>
+        <div class="record-summary__row"><span class="record-summary__label">霑ｴ・ｾ陜ｨ・ｨ陋滂ｽ､</span><strong>${escapeHtml(currentValue || "邵ｺ・ｪ邵ｺ繝ｻ)}</strong></div>
       </div>
     </div>
   `;
@@ -1209,7 +1204,7 @@ function renderEditField() {
 
   DOM.chatComposer.hidden = false;
   DOM.chatInput.value = currentValue || "";
-  DOM.chatInput.placeholder = field === "store" ? "店舗名を入力" : "メモを入力";
+  DOM.chatInput.placeholder = field === "store" ? "陟手挙繝ｻ陷ｷ髦ｪ・定怦・･陷峨・ : "郢晢ｽ｡郢晢ｽ｢郢ｧ雋槭・陷峨・;
 }
 
 function bindMiniCalendarButtonsForEdit() {
@@ -1228,7 +1223,7 @@ function handleChatSubmit(event) {
   if (!ui.recordFlow) {
     const value = DOM.chatInput.value.trim();
     if (value) {
-      DOM.chatLog.innerHTML = `<div class="chat-message chat-message--bot">まずは「かくにん」か「きろく」を押してね。</div>`;
+      DOM.chatLog.innerHTML = `<div class="chat-message chat-message--bot">邵ｺ・ｾ邵ｺ螢ｹ繝ｻ邵ｲ蠕個ｰ邵ｺ荳岩・郢ｧ阮卍髦ｪﾂｰ邵ｲ蠕娯ｳ郢ｧ髦ｪ・･邵ｲ髦ｪ・定ｬ夲ｽｼ邵ｺ蜉ｱ窶ｻ邵ｺ・ｭ邵ｲ繝ｻ/div>`;
     }
     DOM.chatInput.value = "";
     return;
@@ -1236,7 +1231,7 @@ function handleChatSubmit(event) {
 
   const value = DOM.chatInput.value.trim();
   if (!value) {
-    showTransientFormError(DOM.chatComposer, "入力してね");
+    showTransientFormError(DOM.chatComposer, "陷茨ｽ･陷牙ｸ呻ｼ邵ｺ・ｦ邵ｺ・ｭ");
     return;
   }
 
@@ -1250,7 +1245,7 @@ function handleChatSubmit(event) {
   if (ui.recordFlow.step === "category-add-budget") {
     const budget = Number(value);
     if (!Number.isFinite(budget)) {
-      showTransientFormError(DOM.chatComposer, "金額で入れてね");
+      showTransientFormError(DOM.chatComposer, "鬩･鮃ｹ・｡髦ｪ縲定怦・･郢ｧ蠕娯ｻ邵ｺ・ｭ");
       return;
     }
     const newCategory = {
@@ -1428,7 +1423,7 @@ function applyEditTextField(field, value) {
   } else if (field === "amount") {
     const amount = Number(value);
     if (!Number.isFinite(amount)) {
-      showTransientFormError(DOM.chatComposer, "金額で入れてね");
+      showTransientFormError(DOM.chatComposer, "鬩･鮃ｹ・｡髦ｪ縲定怦・･郢ｧ蠕娯ｻ邵ｺ・ｭ");
       return;
     }
     ui.recordDraft.amount = Math.round(amount);
@@ -1459,7 +1454,7 @@ function commitRecord() {
   };
 
   if (!record.categoryId) {
-    showTransientFormError(DOM.chatComposer, "カテゴリを選んでね");
+    showTransientFormError(DOM.chatComposer, "郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ郢ｧ蟶昶・郢ｧ阮吶堤ｸｺ・ｭ");
     return;
   }
 
@@ -1523,7 +1518,7 @@ function renderDataPage() {
           <strong>${escapeHtml(category.name)}</strong>
           <strong>${formatMoney(remaining)}</strong>
         </div>
-        <div class="summary-item__rest">設定 ${formatMoney(category.budget)} / 使った ${formatMoney(spent)}</div>
+        <div class="summary-item__rest">髫ｪ・ｭ陞ｳ繝ｻ${formatMoney(category.budget)} / 闖ｴ・ｿ邵ｺ・｣邵ｺ繝ｻ${formatMoney(spent)}</div>
       </article>
     `;
   }).join("");
@@ -1546,7 +1541,7 @@ function renderDataPage() {
     const records = [...state.records].slice(0, 12);
     DOM.recordHistoryList.innerHTML = records.length
       ? records.map((record) => renderRecordDetailRow(record)).join("")
-      : `<div class="subcopy">まだ記録がないよ。</div>`;
+      : `<div class="subcopy">邵ｺ・ｾ邵ｺ・ｰ髫ｪ蛟ｬ鮖ｸ邵ｺ蠕娯・邵ｺ繝ｻ・育ｸｲ繝ｻ/div>`;
     bindRecordActionButtons(DOM.recordHistoryList);
   }
 }
@@ -1570,12 +1565,12 @@ function selectCalendarWeek(index) {
   const weekDates = dates.slice(start, start + 7).filter((date) => date.getMonth() === ui.calendarMonth.getMonth());
   const summary = getRecordsForRange(weekDates[0], weekDates[weekDates.length - 1]);
   ui.selectedDate = toDateKey(weekDates[0] || new Date());
-  renderCalendarDetail(summary, "週ごとの集計");
+  renderCalendarDetail(summary, "鬨ｾ・ｱ邵ｺ譁絶・邵ｺ・ｮ鬮ｮ繝ｻ・ｨ繝ｻ);
 }
 
 function renderCalendar() {
   const month = ui.calendarMonth;
-  DOM.calendarMonthLabel.textContent = `${month.getFullYear()}年${month.getMonth() + 1}月`;
+  DOM.calendarMonthLabel.textContent = `${month.getFullYear()}陝ｷ・ｴ${month.getMonth() + 1}隴帙・;
   DOM.calendarViewButtons.forEach((button) => button.classList.toggle("is-active", button.dataset.calendarView === ui.calendarMode));
   const dates = getMonthDates(month);
   const todayKey = toDateKey(new Date());
@@ -1590,7 +1585,7 @@ function renderCalendar() {
     return `
       <button type="button" class="calendar-cell${isCurrentMonth ? "" : " is-outside"}${selectedClass}${rangeClass}" data-calendar-date="${key}">
         <span class="calendar-cell__day">${date.getDate()}</span>
-        <span class="calendar-cell__count">${records.length ? `${records.length}件` : ""}${key === todayKey ? " 今日" : ""}</span>
+        <span class="calendar-cell__count">${records.length ? `${records.length}闔会ｽｶ` : ""}${key === todayKey ? " 闔蛾大ｾ・ : ""}</span>
       </button>
     `;
   }).join("");
@@ -1615,9 +1610,9 @@ function renderCalendar() {
       `${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, "0")}-01`,
       `${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, "0")}-${String(new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate()).padStart(2, "0")}`
     );
-    renderCalendarDetail(records, "月全体の集計");
+    renderCalendarDetail(records, "隴帑ｺ･繝ｻ闖ｴ阮吶・鬮ｮ繝ｻ・ｨ繝ｻ);
   } else if (DOM.rangeMode.checked && ui.selectedRangeStart && ui.selectedRangeEnd) {
-    renderCalendarDetail(getRecordsForRange(ui.selectedRangeStart, ui.selectedRangeEnd), "範囲の記録");
+    renderCalendarDetail(getRecordsForRange(ui.selectedRangeStart, ui.selectedRangeEnd), "驕ｽ繝ｻ蟲・ｸｺ・ｮ髫ｪ蛟ｬ鮖ｸ");
   } else {
     renderCalendarDetail(getRecordsForDate(ui.selectedDate), formatDateLabel(ui.selectedDate));
   }
@@ -1688,11 +1683,11 @@ function renderCalendarDetail(records, label) {
     <div class="section-head section-head--compact">
       <div>
         <p class="eyebrow">${escapeHtml(label)}</p>
-        <h3>${records.length ? `${records.length}件 / ${formatMoney(total)}` : "記録なし"}</h3>
+        <h3>${records.length ? `${records.length}闔会ｽｶ / ${formatMoney(total)}` : "髫ｪ蛟ｬ鮖ｸ邵ｺ・ｪ邵ｺ繝ｻ}</h3>
       </div>
     </div>
     <div class="detail-list">
-      ${records.length ? records.map((record) => renderRecordDetailRow(record)).join("") : `<div class="subcopy">この期間の記録はまだないよ。</div>`}
+      ${records.length ? records.map((record) => renderRecordDetailRow(record)).join("") : `<div class="subcopy">邵ｺ阮吶・隴帶ｻ・ｿ｣邵ｺ・ｮ髫ｪ蛟ｬ鮖ｸ邵ｺ・ｯ邵ｺ・ｾ邵ｺ・ｰ邵ｺ・ｪ邵ｺ繝ｻ・育ｸｲ繝ｻ/div>`}
     </div>
   `;
   bindRecordActionButtons(DOM.calendarDetail);
@@ -1709,8 +1704,8 @@ function renderRecordDetailRow(record) {
       <div>
         <strong>${formatMoney(record.amount)}</strong>
         <div class="home-actions">
-          <button type="button" class="mini-button" data-edit-record="${escapeHtml(record.id)}">変更</button>
-          <button type="button" class="mini-button" data-delete-record="${escapeHtml(record.id)}">削除</button>
+          <button type="button" class="mini-button" data-edit-record="${escapeHtml(record.id)}">陞溽判蟲ｩ</button>
+          <button type="button" class="mini-button" data-delete-record="${escapeHtml(record.id)}">陷台ｼ∝求</button>
         </div>
       </div>
     </div>
@@ -1724,11 +1719,11 @@ function renderSettings() {
   DOM.notifications.checked = Boolean(state.settings.notificationsEnabled);
   DOM.categoryEditor.innerHTML = getCurrentCategories().map((category) => `
     <div class="category-row" data-category-row="${escapeHtml(category.id)}">
-      <input type="text" value="${escapeHtml(category.name)}" data-category-name="${escapeHtml(category.id)}" aria-label="カテゴリ名">
-      <input type="number" min="0" step="1" value="${escapeHtml(category.budget)}" data-category-budget="${escapeHtml(category.id)}" aria-label="予算">
-      <input type="color" value="${escapeHtml(category.color)}" data-category-color="${escapeHtml(category.id)}" aria-label="色">
+      <input type="text" value="${escapeHtml(category.name)}" data-category-name="${escapeHtml(category.id)}" aria-label="郢ｧ・ｫ郢昴・縺也ｹ晢ｽｪ陷ｷ繝ｻ>
+      <input type="number" min="0" step="1" value="${escapeHtml(category.budget)}" data-category-budget="${escapeHtml(category.id)}" aria-label="闔閧ｲ・ｮ繝ｻ>
+      <input type="color" value="${escapeHtml(category.color)}" data-category-color="${escapeHtml(category.id)}" aria-label="豼ｶ・ｲ">
       <div class="category-row__actions">
-        <button type="button" class="mini-button" data-category-delete="${escapeHtml(category.id)}">削除</button>
+        <button type="button" class="mini-button" data-category-delete="${escapeHtml(category.id)}">陷台ｼ∝求</button>
       </div>
     </div>
   `).join("");
@@ -1851,7 +1846,7 @@ function showTransientFormError(container, text) {
 }
 
 function extractAmount(text) {
-  const match = text.match(/([0-9]{2,6})\s*円?/);
+  const match = text.match(/([0-9]{2,6})\s*陷繝ｻ/);
   return match ? Number(match[1]) : 0;
 }
 
@@ -1870,3 +1865,4 @@ function checkMonthRollover() {
 }
 
 document.addEventListener("DOMContentLoaded", boot);
+

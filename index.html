@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
-  <title>やさしすぎ家計簿</title>
+  <title>繧・＆縺励☆縺主ｮｶ險育ｰｿ</title>
   <link rel="stylesheet" href="styles.css?v=20260706-2">
   <script defer src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script defer src="app.js?v=20260706-2"></script>
@@ -13,18 +13,18 @@
   <div class="app-shell">
     <section class="auth-screen view is-active" data-view="auth" aria-labelledby="auth-title">
       <div class="hero-arc">
-        <p class="hero-arc__line hero-arc__line--small" data-arc-text>ゆるく続ける、じぶんに</p>
-        <h1 id="auth-title" class="hero-arc__line hero-arc__line--large hero-arc__line--lowered" data-arc-text>やさしすぎ家計簿</h1>
+        <p class="hero-arc__line hero-arc__line--small" data-arc-text>繧・ｋ縺冗ｶ壹￠繧九√§縺ｶ繧薙↓</p>
+        <h1 id="auth-title" class="hero-arc__line hero-arc__line--large hero-arc__line--lowered" data-arc-text>繧・＆縺励☆縺主ｮｶ險育ｰｿ</h1>
       </div>
 
       <div class="auth-mascot">
-        <img id="authMascot" src="assets/mascot/mikeneko-normal.png" alt="三毛猫スライム">
+        <img id="authMascot" src="assets/mascot/mikeneko-normal.png" alt="荳画ｯ帷賢繧ｹ繝ｩ繧､繝">
       </div>
 
       <div class="auth-card glass-card">
-        <div class="auth-tabs" role="tablist" aria-label="ログインと新規登録">
-          <button class="tab-button is-active" type="button" data-auth-tab="login" role="tab" aria-selected="true">ログイン</button>
-          <button class="tab-button" type="button" data-auth-tab="register" role="tab" aria-selected="false">新規登録</button>
+        <div class="auth-tabs" role="tablist" aria-label="繝ｭ繧ｰ繧､繝ｳ縺ｨ譁ｰ隕冗匳骭ｲ">
+          <button class="tab-button is-active" type="button" data-auth-tab="login" role="tab" aria-selected="true">繝ｭ繧ｰ繧､繝ｳ</button>
+          <button class="tab-button" type="button" data-auth-tab="register" role="tab" aria-selected="false">譁ｰ隕冗匳骭ｲ</button>
         </div>
 
         <form id="loginForm" class="auth-form is-active" novalidate>
@@ -33,26 +33,26 @@
             <input type="text" id="loginId" autocomplete="username" placeholder="yasasi123" required>
           </label>
           <label class="field">
-            <span>パスワード</span>
-            <input type="password" id="loginPassword" autocomplete="current-password" placeholder="••••••••" required>
+            <span>繝代せ繝ｯ繝ｼ繝・/span>
+            <input type="password" id="loginPassword" autocomplete="current-password" placeholder="窶｢窶｢窶｢窶｢窶｢窶｢窶｢窶｢" required>
           </label>
-          <button class="primary-button" type="submit">ログイン</button>
+          <button class="primary-button" type="submit">繝ｭ繧ｰ繧､繝ｳ</button>
         </form>
 
         <form id="registerForm" class="auth-form" novalidate hidden>
           <label class="field">
-            <span>おなまえ</span>
-            <input type="text" id="registerName" autocomplete="nickname" placeholder="やさしさん" required>
+            <span>縺翫↑縺ｾ縺・/span>
+            <input type="text" id="registerName" autocomplete="nickname" placeholder="繧・＆縺励＆繧・ required>
           </label>
           <label class="field">
             <span>ID</span>
             <input type="text" id="registerId" autocomplete="username" placeholder="yasasi123" required>
           </label>
           <label class="field">
-            <span>パスワード</span>
-            <input type="password" id="registerPassword" autocomplete="new-password" placeholder="8文字以上" required>
+            <span>繝代せ繝ｯ繝ｼ繝・/span>
+            <input type="password" id="registerPassword" autocomplete="new-password" placeholder="8譁・ｭ嶺ｻ･荳・ required>
           </label>
-          <button class="primary-button" type="submit">新規登録</button>
+          <button class="primary-button" type="submit">譁ｰ隕冗匳骭ｲ</button>
         </form>
       </div>
     </section>
@@ -61,19 +61,19 @@
       <div class="setup-panel glass-card">
         <header class="section-head">
           <div>
-            <p class="eyebrow">初回設定</p>
-            <h2 id="setup-title">カテゴリごとの予算を入れてね</h2>
-            <p class="subcopy">初回のみ表示。あとから設定画面で変えられます。</p>
+            <p class="eyebrow">蛻晏屓險ｭ螳・/p>
+            <h2 id="setup-title">繧ｫ繝・ざ繝ｪ縺斐→縺ｮ莠育ｮ励ｒ蜈･繧後※縺ｭ</h2>
+            <p class="subcopy">蛻晏屓縺ｮ縺ｿ陦ｨ遉ｺ縲ゅ≠縺ｨ縺九ｉ險ｭ螳夂判髱｢縺ｧ螟峨∴繧峨ｌ縺ｾ縺吶・/p>
           </div>
         </header>
         <div class="setup-mascot">
-          <img id="setupMascot" src="assets/mascot/mikeneko-normal.png" alt="三毛猫スライム">
+          <img id="setupMascot" src="assets/mascot/mikeneko-normal.png" alt="荳画ｯ帷賢繧ｹ繝ｩ繧､繝">
         </div>
         <div id="setupChat" class="chat-log chat-log--setup" aria-live="polite"></div>
         <form id="setupForm" class="chat-composer">
-          <label class="sr-only" for="setupInput">入力</label>
-          <input id="setupInput" type="text" inputmode="numeric" placeholder="金額を入力">
-          <button type="submit" class="send-button">送信</button>
+          <label class="sr-only" for="setupInput">蜈･蜉・/label>
+          <input id="setupInput" type="text" inputmode="numeric" placeholder="驥鷹｡阪ｒ蜈･蜉・>
+          <button type="submit" class="send-button">騾∽ｿ｡</button>
         </form>
         <div id="setupActions" class="option-grid"></div>
       </div>
@@ -82,19 +82,19 @@
     <main id="appShell" class="app-shell-main" hidden>
       <header class="topbar glass-card">
         <div class="topbar__left">
-          <p class="eyebrow">やさしすぎ家計簿</p>
-          <strong id="remainingToday" class="remaining-today">今日あと 0円</strong>
+          <p class="eyebrow">繧・＆縺励☆縺主ｮｶ險育ｰｿ</p>
+          <strong id="remainingToday" class="remaining-today">莉頑律縺ゅ→ 0蜀・/strong>
         </div>
         <div class="topbar__actions">
-          <button class="icon-button" type="button" data-go="calendar" aria-label="カレンダーを開く">📅</button>
-          <button class="icon-button" type="button" data-go="settings" aria-label="設定を開く">⚙️</button>
+          <button class="icon-button" type="button" data-go="calendar" aria-label="繧ｫ繝ｬ繝ｳ繝繝ｼ繧帝幕縺・>套</button>
+          <button class="icon-button" type="button" data-go="settings" aria-label="險ｭ螳壹ｒ髢九￥">笞呻ｸ・/button>
         </div>
       </header>
 
-      <section id="homeView" class="view is-active" data-view="home" aria-labelledby="home-title">
+            <section id="homeView" class="view is-active" data-view="home" aria-labelledby="home-title">
         <div class="home-hero glass-card">
           <div class="hero-copy">
-            <p class="eyebrow">今日のきろく</p>
+            <p class="eyebrow">今日の記録</p>
             <h2 id="home-title">なにする？</h2>
           </div>
           <div class="mascot-stage">
@@ -106,16 +106,18 @@
             <button class="primary-button" type="button" data-home-action="record">きろく</button>
           </div>
         </div>
+      </section>
+
+      <section id="recordView" class="view page-view" data-view="record" hidden aria-labelledby="record-title">
+        <header class="page-head glass-card">
+          <div>
+            <p class="eyebrow">チャット</p>
+            <h2 id="record-title">やさしく記録する</h2>
+          </div>
+          <button id="resetRecord" class="text-button" type="button">やり直す</button>
+        </header>
 
         <section class="chat-card glass-card">
-          <header class="section-head section-head--compact">
-            <div>
-              <p class="eyebrow">チャット</p>
-              <h3>やさしく記録する</h3>
-            </div>
-            <button id="resetRecord" class="text-button" type="button">やり直す</button>
-          </header>
-
           <div class="chat-layout">
             <div class="chat-mascot">
               <img id="chatMascot" src="assets/mascot/mikeneko-normal.png" alt="三毛猫スライム">
@@ -131,31 +133,29 @@
             </div>
           </div>
         </section>
-      </section>
-
-      <section id="dataView" class="view page-view" data-view="data" hidden aria-labelledby="data-title">
+      </section>      <section id="dataView" class="view page-view" data-view="data" hidden aria-labelledby="data-title">
         <header class="page-head glass-card">
           <div>
-            <p class="eyebrow">データページ</p>
-            <h2 id="data-title">カテゴリごとの残り</h2>
+            <p class="eyebrow">繝・・繧ｿ繝壹・繧ｸ</p>
+            <h2 id="data-title">繧ｫ繝・ざ繝ｪ縺斐→縺ｮ谿九ｊ</h2>
           </div>
-          <button class="text-button" type="button" data-go="home">ホームへ</button>
+          <button class="text-button" type="button" data-go="home">繝帙・繝縺ｸ</button>
         </header>
 
         <div class="data-surface">
           <section class="glass-card data-summary-card">
             <div class="section-head section-head--compact">
               <div>
-                <p class="eyebrow">上半分</p>
-                <h3>カテゴリの残金</h3>
+                <p class="eyebrow">荳雁濠蛻・/p>
+                <h3>繧ｫ繝・ざ繝ｪ縺ｮ谿矩≡</h3>
               </div>
-              <p class="subcopy">内容が増えたらここだけスクロールします。</p>
+              <p class="subcopy">蜀・ｮｹ縺悟｢励∴縺溘ｉ縺薙％縺縺代せ繧ｯ繝ｭ繝ｼ繝ｫ縺励∪縺吶・/p>
             </div>
             <div id="categorySummaryList" class="summary-list"></div>
             <div class="section-head section-head--compact">
               <div>
-                <p class="eyebrow">最近の記録</p>
-                <h3>変更・削除できる一覧</h3>
+                <p class="eyebrow">譛霑代・險倬鹸</p>
+                <h3>螟画峩繝ｻ蜑企勁縺ｧ縺阪ｋ荳隕ｧ</h3>
               </div>
             </div>
             <div id="recordHistoryList" class="detail-list"></div>
@@ -164,10 +164,10 @@
           <section class="glass-card bottle-card">
             <div class="section-head section-head--compact">
               <div>
-                <p class="eyebrow">下半分</p>
-                <h3>ガラス瓶</h3>
+                <p class="eyebrow">荳句濠蛻・/p>
+                <h3>繧ｬ繝ｩ繧ｹ逑ｶ</h3>
               </div>
-              <p class="subcopy">瓶の色はカテゴリで固定。</p>
+              <p class="subcopy">逑ｶ縺ｮ濶ｲ縺ｯ繧ｫ繝・ざ繝ｪ縺ｧ蝗ｺ螳壹・/p>
             </div>
             <div id="bottleGrid" class="bottle-grid"></div>
           </section>
@@ -177,40 +177,40 @@
       <section id="calendarView" class="view page-view" data-view="calendar" hidden aria-labelledby="calendar-title">
         <header class="page-head glass-card">
           <div>
-            <p class="eyebrow">カレンダーページ</p>
-            <h2 id="calendar-title">記録の見える化</h2>
+            <p class="eyebrow">繧ｫ繝ｬ繝ｳ繝繝ｼ繝壹・繧ｸ</p>
+            <h2 id="calendar-title">險倬鹸縺ｮ隕九∴繧句喧</h2>
           </div>
-          <button class="text-button" type="button" data-go="home">ホームへ</button>
+          <button class="text-button" type="button" data-go="home">繝帙・繝縺ｸ</button>
         </header>
 
         <section class="calendar-shell glass-card">
           <div class="calendar-toolbar">
-            <div class="segmented-control" role="tablist" aria-label="表示切り替え">
-              <button type="button" class="seg-button is-active" data-calendar-view="day">日</button>
-              <button type="button" class="seg-button" data-calendar-view="week">週</button>
-              <button type="button" class="seg-button" data-calendar-view="month">月</button>
+            <div class="segmented-control" role="tablist" aria-label="陦ｨ遉ｺ蛻・ｊ譖ｿ縺・>
+              <button type="button" class="seg-button is-active" data-calendar-view="day">譌･</button>
+              <button type="button" class="seg-button" data-calendar-view="week">騾ｱ</button>
+              <button type="button" class="seg-button" data-calendar-view="month">譛・/button>
             </div>
             <label class="toggle-chip">
               <input id="rangeMode" type="checkbox">
-              <span>範囲選択</span>
+              <span>遽・峇驕ｸ謚・/span>
             </label>
           </div>
 
           <div class="calendar-grid-shell">
             <div class="week-index" aria-hidden="true">
-              <button type="button" class="week-number" data-week-index="0">①</button>
-              <button type="button" class="week-number" data-week-index="1">②</button>
-              <button type="button" class="week-number" data-week-index="2">③</button>
-              <button type="button" class="week-number" data-week-index="3">④</button>
-              <button type="button" class="week-number" data-week-index="4">⑤</button>
+              <button type="button" class="week-number" data-week-index="0">竭</button>
+              <button type="button" class="week-number" data-week-index="1">竭｡</button>
+              <button type="button" class="week-number" data-week-index="2">竭｢</button>
+              <button type="button" class="week-number" data-week-index="3">竭｣</button>
+              <button type="button" class="week-number" data-week-index="4">竭､</button>
             </div>
             <div class="calendar-grid-panel">
               <div class="calendar-caption">
-                <button class="icon-button icon-button--ghost" type="button" data-calendar-nav="prev" aria-label="前の月">‹</button>
-                <strong id="calendarMonthLabel">2026年7月</strong>
-                <button class="icon-button icon-button--ghost" type="button" data-calendar-nav="next" aria-label="次の月">›</button>
+                <button class="icon-button icon-button--ghost" type="button" data-calendar-nav="prev" aria-label="蜑阪・譛・>窶ｹ</button>
+                <strong id="calendarMonthLabel">2026蟷ｴ7譛・/strong>
+                <button class="icon-button icon-button--ghost" type="button" data-calendar-nav="next" aria-label="谺｡縺ｮ譛・>窶ｺ</button>
               </div>
-              <div id="calendarGrid" class="calendar-grid" aria-label="日付一覧"></div>
+              <div id="calendarGrid" class="calendar-grid" aria-label="譌･莉倅ｸ隕ｧ"></div>
               <div id="calendarDetail" class="calendar-detail"></div>
             </div>
           </div>
@@ -220,75 +220,76 @@
       <section id="settingsView" class="view page-view" data-view="settings" hidden aria-labelledby="settings-title">
         <header class="page-head glass-card">
           <div>
-            <p class="eyebrow">設定画面</p>
-            <h2 id="settings-title">変更できる項目</h2>
+            <p class="eyebrow">險ｭ螳夂判髱｢</p>
+            <h2 id="settings-title">螟画峩縺ｧ縺阪ｋ鬆・岼</h2>
           </div>
-          <button class="text-button" type="button" data-go="home">ホームへ</button>
+          <button class="text-button" type="button" data-go="home">繝帙・繝縺ｸ</button>
         </header>
 
         <div class="settings-grid">
           <section class="glass-card settings-card">
             <div class="section-head section-head--compact">
               <div>
-                <p class="eyebrow">月予算</p>
-                <h3>今月の設定</h3>
+                <p class="eyebrow">譛井ｺ育ｮ・/p>
+                <h3>莉頑怦縺ｮ險ｭ螳・/h3>
               </div>
             </div>
             <form id="budgetForm" class="stack-form">
               <label class="field">
-                <span>月予算</span>
+                <span>譛井ｺ育ｮ・/span>
                 <input id="monthlyBudget" type="number" min="0" step="1">
               </label>
               <div class="setting-toggles">
-                <label class="toggle-chip"><input id="saveReceipts" type="checkbox"><span>レシート画像保存ON/OFF</span></label>
-                <label class="toggle-chip"><input id="notifications" type="checkbox"><span>通知ON/OFF</span></label>
+                <label class="toggle-chip"><input id="saveReceipts" type="checkbox"><span>繝ｬ繧ｷ繝ｼ繝育判蜒丈ｿ晏ｭ楼N/OFF</span></label>
+                <label class="toggle-chip"><input id="notifications" type="checkbox"><span>騾夂衍ON/OFF</span></label>
               </div>
-              <button class="primary-button" type="submit">保存</button>
+              <button class="primary-button" type="submit">菫晏ｭ・/button>
             </form>
           </section>
 
           <section class="glass-card settings-card">
             <div class="section-head section-head--compact">
               <div>
-                <p class="eyebrow">カテゴリ</p>
-                <h3>追加・変更・削除</h3>
+                <p class="eyebrow">繧ｫ繝・ざ繝ｪ</p>
+                <h3>霑ｽ蜉繝ｻ螟画峩繝ｻ蜑企勁</h3>
               </div>
             </div>
             <div id="categoryEditor" class="category-editor"></div>
             <form id="categoryCreateForm" class="stack-form stack-form--split">
               <label class="field">
-                <span>カテゴリ名</span>
-                <input id="categoryName" type="text" placeholder="食費">
+                <span>繧ｫ繝・ざ繝ｪ蜷・/span>
+                <input id="categoryName" type="text" placeholder="鬟溯ｲｻ">
               </label>
               <label class="field">
-                <span>色</span>
+                <span>濶ｲ</span>
                 <input id="categoryColor" type="color" value="#f5c84b">
               </label>
-              <button class="primary-button" type="submit">カテゴリ追加</button>
+              <button class="primary-button" type="submit">繧ｫ繝・ざ繝ｪ霑ｽ蜉</button>
             </form>
           </section>
         </div>
       </section>
     </main>
 
-    <nav id="bottomNav" class="bottom-nav glass-card" hidden aria-label="アプリの移動">
-      <button type="button" class="bottom-nav__item is-active" data-go="home">ホーム</button>
-      <button type="button" class="bottom-nav__item" data-go="data">データ</button>
-      <button type="button" class="bottom-nav__item" data-go="calendar">カレンダー</button>
-      <button type="button" class="bottom-nav__item" data-go="settings">設定</button>
+    <nav id="bottomNav" class="bottom-nav glass-card" hidden aria-label="繧｢繝励Μ縺ｮ遘ｻ蜍・>
+      <button type="button" class="bottom-nav__item is-active" data-go="home">繝帙・繝</button>
+      <button type="button" class="bottom-nav__item" data-go="data">繝・・繧ｿ</button>
+      <button type="button" class="bottom-nav__item" data-go="calendar">繧ｫ繝ｬ繝ｳ繝繝ｼ</button>
+      <button type="button" class="bottom-nav__item" data-go="settings">險ｭ螳・/button>
     </nav>
 
     <dialog id="copyMonthDialog" class="dialog-card">
       <form method="dialog" class="dialog-inner">
-        <p class="eyebrow">月が変わりました</p>
-        <h3>先月の設定をコピーしますか？</h3>
-        <p>○ はい でコピー、○ いいえ で新しく設定します。</p>
+        <p class="eyebrow">譛医′螟峨ｏ繧翫∪縺励◆</p>
+        <h3>蜈域怦縺ｮ險ｭ螳壹ｒ繧ｳ繝斐・縺励∪縺吶°・・/h3>
+        <p>笳・縺ｯ縺・縺ｧ繧ｳ繝斐・縲≫雷 縺・＞縺・縺ｧ譁ｰ縺励￥險ｭ螳壹＠縺ｾ縺吶・/p>
         <div class="dialog-actions">
-          <button class="primary-button" value="copy">はい</button>
-          <button class="secondary-button" value="new">いいえ</button>
+          <button class="primary-button" value="copy">縺ｯ縺・/button>
+          <button class="secondary-button" value="new">縺・＞縺・/button>
         </div>
       </form>
     </dialog>
   </div>
 </body>
 </html>
+
