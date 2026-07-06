@@ -23,7 +23,7 @@ const DOM = {
   loginId: document.querySelector("#loginId"),
   loginPassword: document.querySelector("#loginPassword"),
   registerName: document.querySelector("#registerName"),
-  registerEmail: document.querySelector("#registerEmail"),
+  registerId: document.querySelector("#registerId"),
   registerPassword: document.querySelector("#registerPassword"),
   authMascot: document.querySelector("#authMascot"),
   setupMascot: document.querySelector("#setupMascot"),
@@ -526,15 +526,15 @@ function handleLogin(event) {
 function handleRegister(event) {
   event.preventDefault();
   const name = DOM.registerName.value.trim();
-  const email = DOM.registerEmail.value.trim();
+  const registerId = DOM.registerId.value.trim();
   const password = DOM.registerPassword.value.trim();
 
-  if (!name || !email || password.length < 8) {
+  if (!name || !registerId || password.length < 8) {
     showTransientFormError(DOM.registerForm, "おなまえ、メール、8文字以上のパスワードが必要だよ");
     return;
   }
 
-  state.auth = { isAuthed: true, user: { name, email } };
+  state.auth = { isAuthed: true, user: { name, id: registerId } };
   state.profile = { name };
   saveState();
   setMascotMood([DOM.authMascot], "happy");
