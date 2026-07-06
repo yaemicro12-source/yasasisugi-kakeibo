@@ -72,6 +72,7 @@ const ui = {
   currentMonthKey: getMonthKey(new Date()),
   recordFlow: null,
   setupFlow: null,
+  setupProgress: null,
   recordDraft: null,
   calendarMode: "day",
   calendarMonth: new Date(),
@@ -96,7 +97,8 @@ function loadState() {
       },
       monthConfigs: {},
       records: [],
-      lastStreakDate: null
+      lastStreakDate: null,
+      setupProgress: null
     };
   }
 
@@ -112,7 +114,8 @@ function loadState() {
       },
       monthConfigs: parsed.monthConfigs ?? {},
       records: Array.isArray(parsed.records) ? parsed.records : [],
-      lastStreakDate: parsed.lastStreakDate ?? null
+      lastStreakDate: parsed.lastStreakDate ?? null,
+      setupProgress: parsed.setupProgress ?? null
     };
   } catch {
     return {
@@ -125,7 +128,8 @@ function loadState() {
       },
       monthConfigs: {},
       records: [],
-      lastStreakDate: null
+      lastStreakDate: null,
+      setupProgress: null
     };
   }
 }
@@ -189,7 +193,27 @@ function copyMonthConfig(source) {
   return JSON.parse(JSON.stringify(source));
 }
 
+function cloneSetupFlow(flow) {
+  return flow ? JSON.parse(JSON.stringify(flow)) : null;
+}
+
+function persistSetupProgress() {
+  state.setupProgress = ui.setupFlow ? cloneSetupFlow(ui.setupFlow) : null;
+  saveState();
+}
+
+function clearSetupProgress() {
+  state.setupProgress = null;
+  saveState();
+}
+
 function ensureMonthConfig(monthKey) {
+  if (state.setupProgress && !state.setupProgress.completed) {
+    ui.setupFlow = cloneSetupFlow(state.setupProgress);
+    showSetupScreen();
+    return null;
+  }
+
   if (state.monthConfigs[monthKey]) {
     return state.monthConfigs[monthKey];
   }
@@ -203,6 +227,7 @@ function ensureMonthConfig(monthKey) {
   }
 
   ui.setupFlow = createSetupFlow(monthKey, null);
+  persistSetupProgress();
   showSetupScreen();
   return null;
 }
@@ -421,7 +446,7 @@ function boot() {
   setAuthTab("login");
   setView(isFirstRun() ? "auth" : "home");
   if (!isFirstRun()) {
-    showApp();
+    beginMonthIfNeeded();
   }
   bindEvents();
   checkMonthRollover();
@@ -579,6 +604,7 @@ function handleCopyMonthDialogClose() {
 
   ui.setupFlow = createSetupFlow(monthKey, null);
   ui.shouldPromptMonthCopy = false;
+  persistSetupProgress();
   showSetupScreen();
 }
 
@@ -637,7 +663,7 @@ function handleSetupSubmit(event) {
   }
 
   ui.setupFlow.index += 1;
-  saveState();
+  persistSetupProgress();
   renderSetupStage();
 }
 
@@ -662,6 +688,7 @@ function handleSetupActions(event) {
     budget: Math.round(budget),
     color: DEFAULT_CATEGORY_COLORS[ui.setupFlow.categories.length % DEFAULT_CATEGORY_COLORS.length]
   });
+  persistSetupProgress();
   renderSetupStage();
 }
 
@@ -676,8 +703,8 @@ function finishSetup() {
 
   state.monthConfigs[monthKey] = config;
   state.auth = state.auth?.isAuthed ? state.auth : { isAuthed: true, user: { name: "user" } };
-  saveState();
   ui.setupFlow = null;
+  clearSetupProgress();
   showApp();
   renderAll();
   setMascotMood([DOM.homeMascot, DOM.chatMascot], "normal");
@@ -761,6 +788,10 @@ function handleHomeAction(event) {
 }
 
 function startRecordFlow(record = null, initialStep = "date") {
+  if (!state.monthConfigs[ui.currentMonthKey]) {
+    beginMonthIfNeeded();
+    return;
+  }
   ui.recordCompletion = null;
   ui.recordDraft = record
     ? { ...record, mode: "edit", id: record.id }
