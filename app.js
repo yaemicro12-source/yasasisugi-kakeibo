@@ -511,7 +511,7 @@ function handleLogin(event) {
   const password = DOM.loginPassword.value.trim();
 
   if (!loginId || !password) {
-    showTransientFormError(DOM.loginForm, "メールアドレスとパスワードを入れてね");
+    showTransientFormError(DOM.loginForm, "IDとパスワードを入れてね");
     return;
   }
 
