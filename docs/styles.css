@@ -117,7 +117,7 @@ a {
   position: relative;
   width: min(100%, 540px);
   margin: 0 auto;
-  min-height: 7rem;
+  min-height: 15rem;
 }
 
 .hero-arc__line {
@@ -140,6 +140,10 @@ a {
   top: 2.2rem;
   font-size: clamp(1.6rem, 6vw, 2.5rem);
   font-weight: 900;
+}
+
+.hero-arc__line--lowered {
+  top: 8.6rem;
 }
 
 .auth-mascot,

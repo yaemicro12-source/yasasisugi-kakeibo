@@ -20,7 +20,7 @@ const DOM = {
   authTabs: Array.from(document.querySelectorAll("[data-auth-tab]")),
   loginForm: document.querySelector("#loginForm"),
   registerForm: document.querySelector("#registerForm"),
-  loginEmail: document.querySelector("#loginEmail"),
+  loginId: document.querySelector("#loginId"),
   loginPassword: document.querySelector("#loginPassword"),
   registerName: document.querySelector("#registerName"),
   registerEmail: document.querySelector("#registerEmail"),
@@ -325,7 +325,7 @@ function renderArcText(element) {
   const text = element.textContent.trim();
   element.textContent = "";
   const count = text.length;
-  const radius = element.classList.contains("hero-arc__line--large") ? 72 : 58;
+  const radius = element.classList.contains("hero-arc__line--large") ? 86 : 70;
 
   text.split("").forEach((char, index) => {
     const span = document.createElement("span");
@@ -507,16 +507,16 @@ function showSetupScreen() {
 
 function handleLogin(event) {
   event.preventDefault();
-  const email = DOM.loginEmail.value.trim();
+  const loginId = DOM.loginId.value.trim();
   const password = DOM.loginPassword.value.trim();
 
-  if (!email || !password) {
+  if (!loginId || !password) {
     showTransientFormError(DOM.loginForm, "メールアドレスとパスワードを入れてね");
     return;
   }
 
-  state.auth = { isAuthed: true, user: { name: email.split("@")[0], email } };
-  state.profile = state.profile ?? { name: email.split("@")[0] };
+  state.auth = { isAuthed: true, user: { name: loginId, id: loginId } };
+  state.profile = state.profile ?? { name: loginId };
   saveState();
   setMascotMood([DOM.authMascot], "normal");
   setSpeech("ログインできたよ。今日もゆっくりいこうね。");
