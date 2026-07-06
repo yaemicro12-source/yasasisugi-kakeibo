@@ -325,7 +325,7 @@ function renderArcText(element) {
   const text = element.textContent.trim();
   element.textContent = "";
   const count = text.length;
-  const radius = element.classList.contains("hero-arc__line--large") ? 86 : 70;
+  const radius = element.classList.contains("hero-arc__line--large") ? 102 : 84;
 
   text.split("").forEach((char, index) => {
     const span = document.createElement("span");
